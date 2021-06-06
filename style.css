@@ -1,0 +1,27 @@
+header img{
+    right: 100px;
+    width: 100px;
+    height:100px;
+    position: relative;
+}
+
+main img{
+padding:20px ;
+    width: 300px;
+    height: 375px;
+    border: 2px;
+    left: 280px;
+    position: relative;
+}
+
+header img,h1 {
+    display: inline-block;
+    
+
+}
+header h1{
+    left: 170px;
+    position: relative;
+    bottom: 40px;
+
+}

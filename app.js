@@ -87,9 +87,7 @@ else{
 showthreeImages();
 }
 showresult();
-rightImageElement.removeEventListener('click'.handleClicking);
-centerImageElement.removeEventListener('click'.handleClicking);
-leftImageElement.removeEventListener('click'.handleClicking);
+
 }
 
 

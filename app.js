@@ -3,6 +3,7 @@
 let leftImageElement = document.getElementById("myImage1");
 let centerImageElement = document.getElementById("myImage2");
 let rightImageElement = document.getElementById("myImage3");
+let container=document.getElementById("imgcontainer");
 
 
 let leftIndex;
@@ -11,6 +12,8 @@ let rightIndex;
 
 let rounds = 25;
 let countclick = 0;
+let arrOfNames=[];
+let arrOfVotes=[];
 
 function Goods(name, imagelink) {
   this.name = name;
@@ -18,6 +21,7 @@ function Goods(name, imagelink) {
   this.votes = 0;
   this.shown = 0;
   Goods.allGoods.push(this);
+  arrOfNames.push(this.name);
 }
 
 Goods.allGoods = [];
@@ -42,7 +46,6 @@ new Goods('shark', 'https://raw.githubusercontent.com/LTUC/amman-201d27/main/cla
 new Goods('sweep', 'https://raw.githubusercontent.com/LTUC/amman-201d27/main/class-11/assets/sweep.png');
 new Goods('tauntaun', 'https://raw.githubusercontent.com/LTUC/amman-201d27/main/class-11/assets/tauntaun.jpg');
 new Goods('unicorn', 'https://raw.githubusercontent.com/LTUC/amman-201d27/main/class-11/assets/unicorn.jpg');
-console.log(Goods.allGoods);
 
 
 function generateRandomIndex() {
@@ -62,17 +65,18 @@ function showthreeImages() {
     leftIndex = generateRandomIndex();
     centerIndex = generateRandomIndex();
 
-  }
+  }}
 
   leftImageElement.setAttribute('src', Goods.allGoods[leftIndex].imagelink);
+  Goods.allGoods[leftIndex].shown++;
   centerImageElement.setAttribute('src', Goods.allGoods[centerIndex].imagelink);
+  Goods.allGoods[centerIndex].shown++;
   rightImageElement.setAttribute('src', Goods.allGoods[rightIndex].imagelink);
-}
+  Goods.allGoods[rightIndex].shown++;
 
 showthreeImages();
-leftImageElement.addEventListener('click', handleClicking);
-centerImageElement.addEventListener('click', handleClicking);
-rightImageElement.addEventListener('click', handleClicking);
+container.addEventListener('click', handleClicking);
+let button;
 
 
 function handleClicking(event) {
@@ -93,13 +97,58 @@ showthreeImages();
 showresult();
 
 }
+//else{
+  //button=document.getElementById('butoon');
+  //button.addEventListener('click,handleShowing')
+ // container.removeEventListener('click',handleClicking);
+//}
 
 
-function showresult() {
-  let ul = document.getElementById('result');
-  for (let i = 0; i < Goods.allGoods.length; i++) {
-    let li = document.createElement('li');
+
+function handleShowing() {
+  gettingList();
+  gettingchart();
+  button.removeEventListener('click,handleshowing');
+
+}
+let arrOfSeen=[];
+function showresult()
+{
+  let ul=document.getElementById('result');
+  for (let i=0;i<Goods.allGoods.length;i++){
+    arrOfVotes.push(Goods.allGoods[i].votes);
+    arrOfSeen.push(Goods.allGoods[i].shown);
+    let li=document.createElement('li');
     ul.appendChild(li);
-    li.textContent = `${Goods.allGoods[i].name} has ${Goods.allGoods[i].votes} Votes`;
+    li.textContent=`${Goods.allGoods[i].name} has ${Goods.allGoods[i].votes} Votes and it has been shown ${Goods.allGoods[i].shown}`;
   }
 }
+function chart{
+  
+let ctx = document.getElementById('myChart')
+let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: arrOfNames,
+        datasets: [{
+            label: '# of Votes',
+            data: arrOfVotes,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+            ],
+            borderWidth: 1
+        },{
+          label: '# of Seen',
+          data: arrOfSeen,
+          backgroundColor: [
+              'rgba(100, 120, 132, 0.5)',
+          ],
+          borderWidth: 1
+      }
+      ]
+    },
+});
+}
+
+}
+

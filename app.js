@@ -103,7 +103,7 @@ else{
  container.removeEventListener('click',handleClicking);
 
 }
-savingToLs();
+//savingToLs();
 }
 
 
@@ -113,8 +113,9 @@ function handleShowing() {
   console.log(hi);
  // chart();
   console.log(hi);
+  savingToLs();
+  button.removeEventListener('click',handleShowing);
   
-
 }
 let arrOfSeen = [];
 
@@ -137,12 +138,16 @@ function savingToLs()
   localStorage.setItem('product',convertedArr);
    
 }
+
 function getingData(){
   let data2=localStorage.getItem('product');
   let convert=JSON.parse(data2);
-
+  if (convert){
+    Goods.allGoods=convert;
+  }
+showthreeImages();
 }
-
+getingData();
 function chart()
 {
 

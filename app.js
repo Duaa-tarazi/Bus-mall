@@ -48,6 +48,7 @@ console.log(Goods.allGoods);
 function generateRandomIndex() {
   let randomImageIndex = Math.floor(Math.random() * Goods.allGoods.length);
   console.log(randomImageIndex);
+ console.log(randomImageIndex);
   return randomImageIndex;
 
 
@@ -95,21 +96,24 @@ function handleClicking(event) {
   }
 
 else{
-let button=document.getElementById('butoon');
-//button.addEventListener("click",handleShowing);
-//button.onclick=handleShowing;
-showresult();
- //container.removeEventListener('click',handleClicking);
-}}
+//showresult();
+
+ let button=document.getElementById('button');
+ button.addEventListener('click',handleShowing);
+ container.removeEventListener('click',handleClicking);
+
+}
+savingToLs();
+}
 
 
 
 function handleShowing() {
   showresult();
   console.log(hi);
-  chart();
+ // chart();
   console.log(hi);
-  //button.removeEventListener("click",handleshowing);
+  
 
 }
 let arrOfSeen = [];
@@ -123,7 +127,22 @@ function showresult() {
     ul.appendChild(li);
     li.textContent = `${Goods.allGoods[i].name} has ${Goods.allGoods[i].votes} Votes and it has been shown ${Goods.allGoods[i].shown}`;
   }
+  chart();
 }
+
+function savingToLs()
+{
+  let convertedArr = JSON.stringify(Goods.allGoods); 
+  
+  localStorage.setItem('product',convertedArr);
+   
+}
+function getingData(){
+  let data2=localStorage.getItem('product');
+  let convert=JSON.parse(data2);
+
+}
+
 function chart()
 {
 
@@ -151,6 +170,7 @@ let myChart = new Chart(ctx, {
     },
 });
 }
+getingData();
 
 
 

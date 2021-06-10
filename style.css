@@ -6,10 +6,12 @@ header img{
 }
 
 header img,h1 {
-    display: inline-block;
-}
+    display: inline-block;}
+   
 
 header h1{
+    font-family: 'Lobster', cursive;;
+
     left: 190px;
     position: relative;
     bottom: 10px;
@@ -21,6 +23,7 @@ main img{
     width: 300px;
     height: 375px;
     border: 2px;
+    border: black;
     left: 280px;
     position: relative;
 }
@@ -31,6 +34,45 @@ main img{
     height: 375px;
     border: 2px;
     left: 280px;
+    top: 110px;
+}
 
+button{
+
+    width:920px;
+    height: 50px;
+    position: relative;
+    top:-330px;
+    left: 280px;
+    background-color: #ddbf16;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 9px #999;
+    transition-duration: 0.4s;
+    border-color: none ;
+
+
+}
+canvas{
+    position: relative;
+    top: 150px;
+    padding-bottom: 150px;
+}
+footer{
+    position: relative;
+    height: 50px;
+
+}
+footer h6{
+    text-align: center;
+    padding-top: 40px;
+  
+}
+#button{
+    font-family: 'Mate', serif;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 9px #999;
+    transition-duration: 0.4s;
 
 }

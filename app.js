@@ -1,11 +1,14 @@
 'use strict'
 
+//from Line 4-7 statment to Import the three Images in tag have 
+//the myImage1/myImage2/myImage3 id.in the the contanier have container id. 
 let leftImageElement = document.getElementById("myImage1");
 let centerImageElement = document.getElementById("myImage2");
 let rightImageElement = document.getElementById("myImage3");
 let container = document.getElementById("imgcontainer");
 
-
+//this three statment to declear 3 variables to put the index of the
+// Images will apear in th main from the array of objects.
 let leftIndex;
 let centerIndex;
 let rightIndex;
@@ -14,7 +17,7 @@ let rounds = 25;
 let countclick = 0;
 let arrOfNames = [];
 let arrOfVotes = [];
-
+//creat object called Goods with 2 values.
 function Goods(name, imagelink) {
   this.name = name;
   this.imagelink = imagelink;
@@ -23,7 +26,7 @@ function Goods(name, imagelink) {
   Goods.allGoods.push(this);
   arrOfNames.push(this.name);
 }
-
+//declear array of objects instances from Goods object 
 Goods.allGoods = [];
 
 new Goods('bag', 'images/bag.jpg');
@@ -44,7 +47,8 @@ new Goods('wine-glass', 'images/wine-glass.jpg');
 
 console.log(Goods.allGoods);
 
-
+//this function is to choose 3 Indexes from Goods.allGoods
+// using mathmatical fun from libraries 
 function generateRandomIndex() {
   let randomImageIndex = Math.floor(Math.random() * Goods.allGoods.length);
   console.log(randomImageIndex);
@@ -53,7 +57,9 @@ function generateRandomIndex() {
 
 
 }
-
+//this function is to disply the three imges have the index genrate from 
+//function (generateRandomIndex)
+//and using while statment to prevent genrate two images like others 
 function showthreeImages() {
   leftIndex = generateRandomIndex();
   centerIndex = generateRandomIndex();
@@ -75,7 +81,7 @@ showthreeImages();
 container.addEventListener('click', handleClicking);
 let button;
 
-
+//this function to count the showen for every image in the array Goods.allGoods when click on it 
 function handleClicking(event) {
   countclick++;
   if (rounds >= countclick) {
@@ -117,7 +123,7 @@ function handleShowing() {
 
 }
 let arrOfSeen = [];
-
+//this function to print the result using unorderd list on the webpage 
 function showresult() {
   let ul = document.getElementById('result');
   for (let i = 0; i < Goods.allGoods.length; i++) {
@@ -129,7 +135,8 @@ function showresult() {
   }
   chart();
 }
-
+// this function to convert the data in the array to 
+//json format to save it in local storge
 function savingToLs()
 {
   let convertedArr = JSON.stringify(Goods.allGoods); 
@@ -137,12 +144,15 @@ function savingToLs()
   localStorage.setItem('product',convertedArr);
    
 }
+//and this getingdata function to take the data from the 
+//local storge ,and transform it again from json format and using or manipulate it  
 function getingData(){
   let data2=localStorage.getItem('product');
   let convert=JSON.parse(data2);
 
 }
-
+// chart function to take the data from array of objects and make 
+//chart according to this array and print the chart on the webpage.
 function chart()
 {
 
@@ -155,7 +165,7 @@ let myChart = new Chart(ctx, {
             label: '# of Votes',
             data: arrOfVotes,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.4)',
+                ' #ddbf16',
             ],
             borderWidth: 1
         },{
